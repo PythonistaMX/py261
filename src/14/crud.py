@@ -19,14 +19,6 @@ def post_alumno(db: Session, cuenta: int, candidato: schemas.SchemaAlumnoIn):
     db.refresh(alumno)
     return alumno
 
-def put_alumno(b: Session, cuenta: int, candidato: schemas.SchemaAlumnoIn):
-    alumno_original = db.query(models.Alumno).filter(models.Alumno.cuenta == cuenta).first()
-    alumno = models.Alumno(cuenta=cuenta, **dict(candidato))
-    db.delete(alumno_original)
-    db.add(alumno)
-    db.commit()
-    db.refresh(alumno)
-    return alumno
 
 def delete_alumno(db: Session, alumno: models.Alumno):
     db.delete(alumno)
