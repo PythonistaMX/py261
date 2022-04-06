@@ -21,13 +21,13 @@ def get_db():
 
 @app.get("/api/", response_model=List[schemas.SchemaAlumno])
 def vuelca_base(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    alumnos = crud.get_alumnos(db, skip=skip, limit=limit)
+    alumnos = crud.consulta_alumnos(db, skip=skip, limit=limit)
     return alumnos
 
 
 @app.get("/api/{cuenta}", response_model=schemas.SchemaAlumno)
 def get_alumno(cuenta, db: Session = Depends(get_db)):
-    alumno = crud.get_alumno(db=db, cuenta=cuenta)
+    alumno = crud.consulta_alumno(db=db, cuenta=cuenta)
     if alumno:
         return alumno
     else:
@@ -36,9 +36,9 @@ def get_alumno(cuenta, db: Session = Depends(get_db)):
         
 @app.delete("/api/{cuenta}")
 def delete_alumno(cuenta, db: Session = Depends(get_db)):
-    alumno = crud.get_alumno(db=db, cuenta=cuenta)
+    alumno = crud.consulta_alumno(db=db, cuenta=cuenta)
     if alumno:
-        crud.delete_alumno(db=db, alumno=alumno)
+        crud.baja_alumno(db=db, alumno=alumno)
         return {}
     else:
         raise HTTPException(status_code=404, detail="Recurso no encontrado")
@@ -46,18 +46,18 @@ def delete_alumno(cuenta, db: Session = Depends(get_db)):
         
 @app.post("/api/{cuenta}", response_model=schemas.SchemaAlumno)
 def post_alumno(cuenta, candidato: schemas.SchemaAlumnoIn, db: Session = Depends(get_db)):
-    alumno = crud.get_alumno(db=db, cuenta=cuenta)
+    alumno = crud.consulta_alumno(db=db, cuenta=cuenta)
     if alumno:
         raise HTTPException(status_code=409, detail="Recurso existente")
-    return crud.post_alumno(db=db, cuenta=cuenta, candidato=candidato)        
+    return crud.alta_alumno(db=db, cuenta=cuenta, candidato=candidato)        
         
         
 @app.put("/api/{cuenta}", response_model=schemas.SchemaAlumno)
 def put_alumno(cuenta, candidato: schemas.SchemaAlumnoIn, db: Session = Depends(get_db)):
-    alumno = crud.get_alumno(db=db, cuenta=cuenta)
+    alumno = crud.consulta_alumno(db=db, cuenta=cuenta)
     if alumno:
-        crud.delete_alumno(db=db, alumno=alumno)
-        return crud.post_alumno(db=db, cuenta=cuenta, candidato=candidato)
+        crud.baja_alumno(db=db, alumno=alumno)
+        return crud.alta_alumno(db=db, cuenta=cuenta, candidato=candidato)
     else:
         raise HTTPException(status_code=404, detail="Recurso no encontrado")
     
