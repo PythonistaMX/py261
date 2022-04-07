@@ -1,0 +1,5 @@
+fastapi
+SQLAlchemy
+uvicorn
+fastapi-users[sqlalchemy2]
+typer
