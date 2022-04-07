@@ -4,8 +4,8 @@ app = typer.Typer()
 
 
 @app.command()
-def admincreate(email: str, password: str):
-    '''Hola, Pepech'''
+def createadmin(email: str, password: str):
+    '''Hola, Josech'''
     typer.echo(f"Hello {email}")
     
 

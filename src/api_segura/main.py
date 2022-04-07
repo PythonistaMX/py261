@@ -15,5 +15,4 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 app = FastAPI()
 
-
 main(app, SessionLocal)
