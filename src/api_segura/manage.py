@@ -1,4 +1,8 @@
+#! /usr/bin/env python
+
+
 import typer
+
 
 app = typer.Typer()
 
