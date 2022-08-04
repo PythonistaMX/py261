@@ -1,0 +1,8 @@
+fastapi
+SQLAlchemy
+uvicorn
+requests
+alembic
+pytest
+tox
+coverage
