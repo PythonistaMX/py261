@@ -1,0 +1,12 @@
+runtime: python39
+
+# [START gae_python38_cloudsql_config]
+# [START gae_python3_cloudsql_config]
+env_variables:
+#  CLOUD_SQL_USERNAME: pythonistaio
+#  CLOUD_SQL_PASSWORD: Op3n5t4ckCDMX
+# CLOUD_SQL_DATABASE_NAME: py261
+# CLOUD_SQL_CONNECTION_NAME: py261-2207:us-central1:pythonista-dev
+# [END gae_python3_cloudsql_config]
+# [END gae_python38_cloudsql_config]
+
